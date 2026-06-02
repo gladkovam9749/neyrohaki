@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Промпты для детских фото — Нейрохаки</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Manrope:wght@400;600;700;800&display=swap');
+
+  :root {
+    --lavender: #C9B8F0;
+    --lavender-light: #EAE3FA;
+    --lavender-mid: #D6C9F5;
+    --pink: #F2C4CE;
+    --pink-light: #FAE8EC;
+    --caramel: #F5D98B;
+    --caramel-light: #FDF3D0;
+    --green: #B8E8C8;
+    --green-light: #E2F5EA;
+    --milk: #FAF8F4;
+    --dark: #2D2340;
+    --dark-mid: #3E3356;
+    --text: #2D2340;
+    --text-muted: #7A6E96;
+    --yellow: #FFD43B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--milk);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--dark);
+    padding: 48px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(201,184,240,0.18);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 60px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(245,217,139,0.13);
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .header h1 span { color: var(--lavender); }
+
+  .header-sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    max-width: 520px;
+  }
+
+  /* HOW TO USE */
+  /* HOW TO USE — full block */
+  .how-to {
+    background: var(--dark);
+    border-radius: 24px;
+    margin: 32px 24px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .how-to::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; right: -50px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(201,184,240,0.1);
+    pointer-events: none;
+  }
+  .how-to-headline {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .how-to-lead {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .use-for {
+    background: rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+  }
+  .use-for-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--lavender);
+    margin-bottom: 10px;
+  }
+  .use-for-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .use-for-tag {
+    background: rgba(201,184,240,0.15);
+    color: rgba(255,255,255,0.8);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .step {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: var(--lavender);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-content {
+    flex: 1;
+  }
+  .step-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+  .step-desc {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+  }
+  .step-desc strong { color: rgba(255,255,255,0.8); }
+  .step-desc .arrow { color: var(--lavender); }
+
+  .lifehack {
+    background: rgba(255,212,59,0.12);
+    border-left: 3px solid var(--yellow);
+    border-radius: 0 12px 12px 0;
+    padding: 12px 16px;
+  }
+  .lifehack-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--yellow);
+    margin-bottom: 5px;
+  }
+  .lifehack p {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.65;
+  }
+  .lifehack strong { color: rgba(255,255,255,0.85); }
+
+  /* SECTION DIVIDER */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 28px 24px 12px;
+  }
+  .section-header-icon {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .section-header-icon.girls { background: var(--pink-light); }
+  .section-header-icon.boys { background: var(--lavender-light); }
+  .section-header-icon.universal { background: var(--green-light); }
+
+  .section-header-label {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--dark);
+  }
+
+  /* CARDS GRID */
+  .cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 24px 24px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(45,35,64,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 6px 24px rgba(45,35,64,0.13); }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px 16px;
+    border-bottom: 1px solid var(--lavender-light);
+  }
+  .card-emoji {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .card-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--dark);
+  }
+  .card-chars {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .card-body {
+    padding: 16px 20px 18px;
+  }
+
+  .prompt-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #555;
+    white-space: pre-wrap;
+    font-family: 'Manrope', sans-serif;
+  }
+
+  .copy-btn {
+    margin-top: 14px;
+    background: var(--dark);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 9px 18px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Manrope', sans-serif;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background 0.15s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .copy-btn:hover { background: var(--dark-mid); }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn.copied { background: #4CAF7D; }
+
+  /* SECTION LINE */
+  .section-line {
+    height: 3px;
+    border-radius: 2px;
+    margin: 0 24px 4px;
+  }
+  .section-line.girls { background: linear-gradient(90deg, var(--pink), var(--pink-light)); }
+  .section-line.boys { background: linear-gradient(90deg, var(--lavender), var(--lavender-light)); }
+  .section-line.universal { background: linear-gradient(90deg, var(--green), var(--green-light)); }
+
+  /* COLOR THEMES per section */
+  .girls .card-emoji { background: var(--pink-light); }
+  .boys .card-emoji { background: var(--lavender-light); }
+  .universal .card-emoji { background: var(--green-light); }
+
+  /* FOOTER */
+  .footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.45);
+    font-size: 12px;
+    text-align: center;
+    padding: 28px 24px;
+    margin-top: 16px;
+  }
+  .footer strong { color: rgba(255,255,255,0.75); }
+
+  /* EMOJI MAPPING */
+  .emoji-холодное { }
+
+  @media (min-width: 700px) {
+    .header { padding: 56px 56px 48px; }
+    .header h1 { font-size: 44px; }
+    .how-to, .section-header, .cards-grid, .section-line {
+      margin-left: 40px; margin-right: 40px;
+    }
+    .cards-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .footer { padding: 32px 56px; }
+  }
+
+  @media (min-width: 1100px) {
+    .cards-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">✦ Нейрохаки · чат-клуб</div>
+  <h1>Промпты для<br><span>детских фото</span> 🎬</h1>
+  <p class="header-sub">Готовые промпты для AI-генерации фото с любимыми персонажами — для девочек, мальчиков и всей семьи</p>
+</div>
+
+<div class="how-to">
+  <div class="how-to-headline">🎬✨ Фото с любимыми героями мультфильмов</div>
+  <div class="how-to-lead">Хотите подарить ребёнку настоящую сказку? 💜<br>
+  С помощью нейросети можно создать реалистичное селфи с любимыми персонажами мультфильмов — так, будто они действительно встретились в жизни 📸</div>
+
+  <div class="use-for">
+    <div class="use-for-title">Подходит для</div>
+    <div class="use-for-tags">
+      <span class="use-for-tag">🖼 аватарок</span>
+      <span class="use-for-tag">🎨 постеров в детскую</span>
+      <span class="use-for-tag">💌 открыток</span>
+      <span class="use-for-tag">🎁 сюрприза ребёнку</span>
+      <span class="use-for-tag">📸 памятных фото</span>
+    </div>
+  </div>
+
+  <div class="steps-list">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">Переходим в бот или на сайт Syntx</div>
+        <div class="step-desc">
+          <span class="arrow">👉🏻</span> Раздел <strong>«Дизайн с ИИ»</strong><br>
+          <span class="arrow">👉🏻</span> Выбираем модель: <strong>NanoBanana 2</strong> или <strong>NanoBanana Pro</strong>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Загружаем фотографию ребёнка</div>
+        <div class="step-desc">
+          💡 Лучше выбирать фото: хорошего качества, где хорошо видно лицо, без сильных фильтров, смотрит в камеру
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Вставляем готовый промпт</div>
+        <div class="step-desc">Подборку промптов смотри ниже 👇</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">Нажимаем «Создать»</div>
+        <div class="step-desc">Через несколько минут получаем готовое фото ребёнка с героями любимого мультфильма ✨</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lifehack">
+    <div class="lifehack-title">💡 Лайфхак</div>
+    <p>Если хотите максимальное сходство лица, используйте <strong>2–3 фотографии ребёнка с разных ракурсов</strong>. NanoBanana лучше считает внешность и сохранит узнаваемые черты лица.</p>
+  </div>
+</div>
+
+<!-- GIRLS -->
+<div class="section-line girls"></div>
+<div class="section-header">
+  <div class="section-header-icon girls">👧</div>
+  <div class="section-header-label">Для девочек</div>
+</div>
+
+<div class="cards-grid girls" id="girls-grid"></div>
+
+<!-- BOYS -->
+<div class="section-line boys"></div>
+<div class="section-header">
+  <div class="section-header-icon boys">👦</div>
+  <div class="section-header-label">Для мальчиков</div>
+</div>
+
+<div class="cards-grid boys" id="boys-grid"></div>
+
+<!-- UNIVERSAL -->
+<div class="section-line universal"></div>
+<div class="section-header">
+  <div class="section-header-icon universal">👧👦</div>
+  <div class="section-header-label">Универсальные</div>
+</div>
+
+<div class="cards-grid universal" id="universal-grid"></div>
+
+<div class="footer">
+  <strong>Business Cool · Нейрохаки</strong><br>
+  Материалы чат-клуба. Использовать только участниками курса.
+</div>
+
+<script>
+const prompts = {
+  girls: [
+    {
+      title: "Холодное сердце",
+      emoji: "❄️",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Elsa, Anna and Olaf. All making warm, joyful, friendly expressions. High camera angle, extreme wide lens, no fish-eye distortion. Natural smartphone selfie perspective with balanced realistic facial proportions.
+
+Realistic live-action versions of the characters integrated with cinematic realism.
+
+Frozen kingdom environment, sparkling snow, ice castle, magical winter atmosphere, soft blue light, snowy mountains.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, cool blue tones, detailed clothing textures, realistic skin, immersive ultra-realistic rendering, premium quality image.`
+    },
+    {
+      title: "Моана",
+      emoji: "🌊",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Moana and Maui. All making warm, adventurous, joyful expressions.
+
+Realistic live-action versions of the characters integrated with cinematic realism.
+
+Beautiful tropical island environment, turquoise ocean, palm trees, cliffs, exotic flowers, golden sunlight.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, warm tropical colors, realistic textures, ultra-realistic rendering.`
+    },
+    {
+      title: "Рапунцель",
+      emoji: "🏰",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Rapunzel, Flynn Rider and Pascal. All making happy, cheerful expressions.
+
+Realistic live-action versions of the characters integrated with cinematic realism.
+
+Fairytale kingdom environment, castle towers, glowing lanterns floating in the sky, golden sunset atmosphere.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, warm golden colors, ultra-realistic rendering.`
+    },
+    {
+      title: "Энканто",
+      emoji: "🦋",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Mirabel Madrigal, Isabela Madrigal and Luisa Madrigal. All making cheerful, lively expressions.
+
+Realistic live-action versions of the characters integrated with cinematic realism.
+
+Colorful magical Colombian village, flowers, butterflies, lush greenery, warm sunlight.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, vibrant colors, ultra-realistic rendering.`
+    },
+    {
+      title: "Русалочка",
+      emoji: "🧜‍♀️",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Ariel, Flounder and Sebastian. All making playful happy expressions.
+
+Realistic live-action versions of the characters integrated with cinematic realism.
+
+Magical underwater kingdom with colorful coral reefs, tropical fish and sparkling water rays.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, vibrant ocean colors, ultra-realistic rendering.`
+    },
+    {
+      title: "Красавица и чудовище",
+      emoji: "🌹",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Belle, Beast and Lumiere. All making warm friendly expressions.
+
+Realistic live-action versions of the characters integrated with cinematic realism.
+
+Elegant castle ballroom, roses, chandeliers, golden candlelight atmosphere.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, warm golden tones, ultra-realistic rendering.`
+    },
+  ],
+  boys: [
+    {
+      title: "Соник",
+      emoji: "💨",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Sonic, Tails and Knuckles. All making energetic, playful expressions.
+
+Realistic live-action versions of the characters integrated with cinematic realism.
+
+Green Hills environment, bright blue sky, palm trees, adventure atmosphere.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, vibrant colors, ultra-realistic rendering.`
+    },
+    {
+      title: "Человек-паук",
+      emoji: "🕷️",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Spider-Man. Both making fun energetic expressions.
+
+Realistic live-action version of Spider-Man integrated with cinematic realism.
+
+New York skyline, skyscrapers, sunset atmosphere.
+
+Characters standing very close behind me in a tight selfie composition.
+
+Cinematic lighting, realistic costume textures, ultra-realistic rendering.`
+    },
+    {
+      title: "Черепашки-ниндзя",
+      emoji: "🐢",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Leonardo, Michelangelo, Donatello and Raphael. All making playful expressions.
+
+Realistic live-action versions of the characters integrated with cinematic realism.
+
+New York streets and ninja hideout atmosphere with neon lighting.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, ultra-realistic rendering.`
+    },
+    {
+      title: "Тачки",
+      emoji: "🏎️",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Lightning McQueen and Mater. Everyone making cheerful playful expressions.
+
+Realistic live-action versions of the characters integrated with cinematic realism.
+
+Radiator Springs environment, Route 66, sunset sky, colorful vintage atmosphere.
+
+Characters standing very close behind me in a tight selfie composition.
+
+Cinematic lighting, ultra-realistic rendering.`
+    },
+    {
+      title: "Щенячий патруль",
+      emoji: "🐾",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Chase, Marshall, Skye and Rubble. All making happy friendly expressions.
+
+Realistic live-action versions integrated with cinematic realism.
+
+Adventure Bay environment, sunny weather, cheerful atmosphere.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, ultra-realistic rendering.`
+    },
+  ],
+  universal: [
+    {
+      title: "Шрек",
+      emoji: "🌿",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Shrek, Donkey, Princess Fiona and Puss in Boots. All making lively, expressive, slightly playful natural character faces.
+
+High camera angle, extreme wide lens, no fish-eye distortion. Natural smartphone selfie perspective with balanced realistic facial proportions.
+
+Realistic live-action characters integrated with stylized cinematic realism.
+
+Magical Shrek-style swamp forest environment, dense trees, moss, roots. Soft green light, light fog, cinematic fairytale forest atmosphere.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, soft natural light, subtle volumetric light rays. Rich green tones, high detail, immersive depth, ultra-realistic rendering.
+
+Warm natural shadows, realistic textures, detailed skin and fabric surfaces. Premium quality image, sharp focus, cinematic depth, professional color grading.`
+    },
+    {
+      title: "Как приручить дракона",
+      emoji: "🐉",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Hiccup, Astrid and Toothless. All making calm, friendly, natural, slightly happy expressions together.
+
+High camera angle, extreme wide lens, no fish-eye distortion. Natural smartphone selfie perspective with balanced realistic facial proportions.
+
+Realistic live-action characters integrated with stylized cinematic realism.
+
+Epic Viking coastal environment, dramatic cliffs, ocean, light fog, distant village huts. Cloudy sky, soft daylight, cinematic Nordic atmosphere.
+
+Toothless positioned closely behind with wings partially visible framing the group.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, soft natural light, subtle atmospheric depth. Cool blue and green tones, high detail, immersive ultra-realistic rendering.
+
+Detailed armor textures, leather, fur, metal elements, realistic skin surfaces.`
+    },
+    {
+      title: "Мадагаскар",
+      emoji: "🦁",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Alex the Lion, Marty the Zebra, Gloria the Hippo, Melman the Giraffe and King Julien.
+
+We are all making silly, exaggerated, playful expressions.
+
+High camera angle, extreme wide lens, no fish-eye distortion. Natural smartphone selfie perspective with realistic proportions.
+
+Realistic live-action versions of the characters integrated with stylized cinematic realism.
+
+Bright tropical Madagascar-style beach with soft white sand, turquoise ocean, lush palm trees, warm sunlight and clear blue sky.
+
+Fun vacation atmosphere, cheerful group energy, rich tropical colors.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Soft natural shadows, warm highlights on skin and fur, detailed beach textures, immersive summer environment.
+
+Ultra-detailed realistic rendering, cinematic lighting, high clarity, premium quality image.`
+    },
+    {
+      title: "Гравити Фолз",
+      emoji: "🔮",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Dipper Pines, Mabel Pines, Grunkle Stan, Soos Ramirez and Wendy Corduroy.
+
+All making friendly, lively, natural, slightly playful character expressions.
+
+High camera angle, extreme wide lens, no fish-eye distortion. Natural smartphone selfie perspective with balanced realistic facial proportions.
+
+Realistic live-action characters integrated with stylized cinematic realism.
+
+Mystery Shack forest environment, tall trees, wooden cabin, warm lights. Soft golden sunlight rays, light fog, cinematic mysterious forest atmosphere.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, soft natural light, subtle volumetric sun rays. Warm earthy tones, high detail, immersive ultra-realistic rendering.
+
+Detailed clothing textures, natural skin tones, realistic fabric surfaces.`
+    },
+    {
+      title: "Лило и Стич",
+      emoji: "🌺",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Lilo and Stitch. All making friendly, joyful, playful expressions.
+
+High camera angle, extreme wide lens, no fish-eye distortion. Natural smartphone selfie perspective with balanced realistic facial proportions.
+
+Realistic live-action versions of the characters integrated with stylized cinematic realism.
+
+Beautiful tropical Hawaii environment with palm trees, turquoise ocean, golden sand beach, tropical flowers, warm sunlight and clear blue sky.
+
+Colorful island atmosphere, cheerful summer mood.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, soft natural daylight, warm highlights, realistic skin and fur textures.
+
+Detailed tropical scenery, vibrant colors, immersive depth, ultra-realistic rendering, premium quality image, sharp focus.`
+    },
+    {
+      title: "Король Лев",
+      emoji: "🦁",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Simba, Nala, Timon and Pumbaa. All making joyful friendly expressions.
+
+Realistic live-action versions integrated with cinematic realism.
+
+African savanna, Pride Rock, golden sunset, warm atmosphere.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, golden colors, ultra-realistic rendering.`
+    },
+    {
+      title: "Миньоны",
+      emoji: "🟡",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With several Minions. Everyone making funny exaggerated expressions.
+
+Realistic live-action versions integrated with cinematic realism.
+
+Bright colorful playful environment.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, vibrant colors, ultra-realistic rendering.`
+    },
+    {
+      title: "Кунг-фу Панда",
+      emoji: "🐼",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Po, Tigress, Monkey and Master Shifu. All making happy adventurous expressions.
+
+Realistic live-action versions integrated with cinematic realism.
+
+Ancient Chinese mountains, temples, cherry blossoms, cinematic atmosphere.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, ultra-realistic rendering.`
+    },
+    {
+      title: "Микки Маус",
+      emoji: "🎠",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Mickey Mouse, Minnie Mouse, Donald Duck and Goofy. All making joyful expressions.
+
+Realistic live-action versions integrated with cinematic realism.
+
+Magical theme park environment, colorful decorations, sunny weather.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, ultra-realistic rendering.`
+    },
+    {
+      title: "Покемоны",
+      emoji: "⚡",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Pikachu, Eevee, Charmander and Squirtle. All making cheerful expressions.
+
+Realistic live-action versions integrated with cinematic realism.
+
+Beautiful green meadow, mountains, blue sky, adventure atmosphere.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, vibrant colors, ultra-realistic rendering.`
+    },
+    {
+      title: "Суперсемейка",
+      emoji: "🦸",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Mr. Incredible, Elastigirl, Violet, Dash and Jack-Jack. All making happy heroic expressions.
+
+Realistic live-action versions integrated with cinematic realism.
+
+Modern city environment with superhero atmosphere.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, ultra-realistic rendering.`
+    },
+    {
+      title: "Гарри Поттер",
+      emoji: "⚗️",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Harry Potter, Hermione Granger and Ron Weasley. All making warm, friendly, adventurous expressions.
+
+Realistic live-action characters integrated with cinematic realism.
+
+Hogwarts castle environment, magical atmosphere, floating candles, enchanted hall, warm magical lighting, detailed wizard robes.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, magical atmosphere, ultra-realistic rendering, premium quality image.`
+    },
+    {
+      title: "Леди Баг и Супер-Кот",
+      emoji: "🐞",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Ladybug and Cat Noir. All making cheerful, heroic expressions.
+
+Realistic live-action versions integrated with cinematic realism.
+
+Paris city environment, Eiffel Tower visible in the distance, warm evening sunlight, magical superhero atmosphere.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, detailed costumes, ultra-realistic rendering.`
+    },
+    {
+      title: "Барби",
+      emoji: "💖",
+      text: `Ultra-realistic 4:5 vertical format ultra wide angle 13mm selfie.
+
+Using my photo as exact face identity reference source.
+
+With Barbie and Ken. All making joyful, stylish expressions.
+
+Realistic live-action versions integrated with cinematic realism.
+
+Pink dream house environment, pastel colors, flowers, sunshine, glamorous atmosphere.
+
+Characters standing very close behind me in a tight selfie group composition.
+
+Cinematic lighting, vibrant colors, ultra-realistic rendering, premium quality image.`
+    },
+  ]
+};
+
+function buildCards(data, gridId) {
+  const grid = document.getElementById(gridId);
+  data.forEach((item, idx) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-header">
+        <div class="card-emoji">${item.emoji}</div>
+        <div class="card-title">${item.title}</div>
+      </div>
+      <div class="card-body">
+        <div class="prompt-text">${item.text}</div>
+        <button class="copy-btn" onclick="copyPrompt(this, ${idx}, '${gridId}')">
+          <span>📋</span> Копировать промпт
+        </button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function copyPrompt(btn, idx, section) {
+  const map = { 'girls-grid': 'girls', 'boys-grid': 'boys', 'universal-grid': 'universal' };
+  const text = prompts[map[section]][idx].text;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = '<span>✅</span> Скопировано!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '<span>📋</span> Копировать промпт';
+    }, 2000);
+  });
+}
+
+buildCards(prompts.girls, 'girls-grid');
+buildCards(prompts.boys, 'boys-grid');
+buildCards(prompts.universal, 'universal-grid');
+</script>
+</body>
+</html>
