@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>«Дизайн с результатом»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Caveat:wght@500;600;700&family=Inter:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#ffffff; --surface:#ffffff; --surface2:#e3edce;
+  --green:#b8e05a; --green-dark:#5a8a1a;
+  --lavender:#9b8fd4; --lavender-bg:#eceaf8;
+  --text:#1a1a2e; --muted:#7a7a95;
+  --border:rgba(0,0,0,0.1); --shadow:0 4px 20px rgba(0,0,0,0.09);
+  --p:20px;
+}
+@media(min-width:600px){ :root{ --p:32px; } }
+*{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body{ background:var(--bg); color:var(--text); font-family:'Onest',sans-serif; font-weight:400; line-height:1.7; min-height:100vh; overflow-x:hidden; }
+
+.disp{ font-family:'Fraunces',serif; font-optical-sizing:auto; }
+.script{ font-family:'Caveat',cursive; }
+.inter{ font-family:'Inter',sans-serif; letter-spacing:-0.01em; }
+
+.blob-container{ position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+.blob{ position:absolute; border-radius:50%; filter:blur(80px); }
+.blob-1{ width:320px; height:320px; background:var(--green); top:-60px; right:-80px; opacity:0.35; }
+.blob-2{ width:280px; height:280px; background:var(--lavender); bottom:10%; left:-90px; opacity:0.25; }
+.blob-3{ width:180px; height:180px; background:var(--green); bottom:30%; right:0; opacity:0.15; }
+
+/* ШАПКА */
+.nh-header{ position:relative; z-index:10; padding:20px var(--p) 0; max-width:720px; margin:0 auto; animation:fadeUp 0.5s ease both; }
+.nh-header-inner{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.nh-logo{ display:flex; flex-direction:column; line-height:1; text-decoration:none; }
+.nh-logo-top{ font-weight:600; font-size:21px; color:var(--text); letter-spacing:0.03em; }
+.nh-logo-bottom{ font-size:19px; color:var(--lavender); margin-top:-3px; }
+.nh-badge{ display:inline-flex; align-items:center; gap:7px; background:var(--text); color:var(--green); font-size:11px; font-weight:500; padding:7px 13px; border-radius:100px; white-space:nowrap; }
+.nh-divider{ margin-top:20px; border-bottom:1px solid var(--border); padding-bottom:20px; }
+
+/* MAIN */
+.nh-main{ position:relative; z-index:1; padding:24px var(--p) 48px; max-width:720px; margin:0 auto; }
+
+/* HERO */
+.nh-hero{ margin-bottom:28px; text-align:center; animation:fadeUp 0.5s ease 0.1s both; }
+.nh-tag{ display:inline-block; background:var(--lavender-bg); color:var(--lavender); font-size:11px; font-weight:600; padding:6px 14px; border-radius:100px; letter-spacing:0.05em; margin-bottom:16px; }
+.nh-title{ font-weight:700; font-size:clamp(30px,9vw,46px); line-height:1.08; letter-spacing:-0.01em; color:var(--text); }
+.nh-subtitle{ font-size:14.5px; color:var(--muted); line-height:1.7; margin-top:14px; max-width:460px; margin-left:auto; margin-right:auto; }
+.nh-meta{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:20px; text-align:left; }
+.nh-pill{ background:var(--surface); color:var(--text); padding:14px 14px; border-radius:14px; box-shadow:var(--shadow); border:1px solid var(--border); }
+.nh-pill.alt{ background:var(--surface2); }
+.nh-pill.lav{ background:var(--lavender-bg); }
+.nh-pill.dark{ background:var(--text); border-color:var(--text); box-shadow:0 6px 20px rgba(26,26,46,0.25); }
+.nh-pill.dark .t{ color:var(--green); }
+.nh-pill.dark .d{ color:rgba(255,255,255,0.65); }
+.nh-pill .t{ font-weight:700; font-size:14px; margin-bottom:2px; }
+.nh-pill .d{ font-size:11.5px; color:var(--muted); }
+
+/* СЕКЦИИ */
+.nh-section{ margin-bottom:30px; animation:fadeUp 0.5s ease both; }
+.section-header{ margin-bottom:16px; }
+.section-title{ font-weight:600; font-size:21px; letter-spacing:-0.01em; color:var(--text); }
+.section-sub{ font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--lavender); margin-bottom:14px; margin-top:6px; }
+.section-intro{ font-size:14px; color:var(--muted); line-height:1.65; margin-bottom:16px; }
+.section-intro b{ color:var(--text); }
+
+/* ЦИТАТА */
+.speech-bubble{ background:var(--surface); border-radius:16px 16px 16px 4px; padding:18px 20px; margin-bottom:18px; box-shadow:var(--shadow); border-left:3px solid var(--lavender); font-size:14px; color:var(--text); line-height:1.65; font-style:italic; }
+
+/* ФИЧИ С ИКОНКОЙ */
+.feature{ display:grid; grid-template-columns:40px 1fr; gap:14px; align-items:start; margin-bottom:16px; }
+.feature-icon{ width:40px; height:40px; border-radius:12px; background:var(--lavender-bg); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+.feature h3{ font-weight:600; font-size:15.5px; color:var(--text); margin-bottom:3px; }
+.feature p{ font-size:13px; color:var(--muted); line-height:1.6; }
+
+/* МОДУЛИ / ЭТАПЫ (нумерованные карточки) */
+.module{ background:var(--surface); border-radius:16px; padding:16px 16px 16px 58px; margin-bottom:10px; box-shadow:var(--shadow); border:1px solid var(--border); position:relative; }
+.module-num{ position:absolute; left:14px; top:16px; width:28px; height:28px; border-radius:9px; background:var(--green); color:var(--text); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12.5px; }
+.module h3{ font-weight:600; font-size:15px; color:var(--text); margin-bottom:4px; letter-spacing:-0.005em; }
+.module p{ font-size:12.5px; color:var(--muted); line-height:1.6; }
+
+/* ПРОСТЫЕ КАРТОЧКИ (белые / лавандовые) */
+.simple-card{ background:var(--surface); border-radius:14px; padding:14px 16px; margin-bottom:8px; box-shadow:var(--shadow); border:1px solid var(--border); }
+.simple-card.lav{ background:var(--lavender-bg); box-shadow:none; border:1px solid rgba(155,143,212,0.2); }
+.simple-card:not(.lav):nth-child(even){ background:var(--surface2); box-shadow:none; border:1px solid rgba(90,138,26,0.15); }
+.simple-card h4{ font-weight:600; font-size:14px; color:var(--text); margin-bottom:3px; }
+.simple-card p{ font-size:12.5px; color:var(--muted); line-height:1.55; }
+
+/* БОНУС-БАННЕР */
+.bonus-banner{ background:var(--surface2); border-radius:14px; padding:14px 18px; margin-bottom:14px; font-size:13.5px; font-weight:700; color:#3a5a1a; display:flex; align-items:center; gap:8px; }
+
+/* РЕЗУЛЬТАТЫ — ПАСТЕЛЬНАЯ СЕТКА */
+.outcome-grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+.outcome-card{ border-radius:14px; padding:16px 10px; text-align:center; }
+.outcome-card:nth-child(3n+1){ background:var(--lavender-bg); }
+.outcome-card:nth-child(3n+2){ background:var(--surface2); }
+.outcome-card:nth-child(3n+3){ background:var(--text); }
+.outcome-card:nth-child(3n+3) .t{ color:var(--green); }
+.outcome-card:nth-child(3n+3) .d{ color:rgba(255,255,255,0.65); }
+.outcome-card .t{ font-weight:700; font-size:13.5px; color:var(--text); margin-bottom:3px; }
+.outcome-card .d{ font-size:11.5px; color:var(--muted); }
+
+/* ЦЕНА */
+.price-lead{ text-align:center; margin-bottom:22px; }
+.price-lead h2{ font-weight:700; font-size:26px; color:var(--text); }
+.price-lead p{ font-size:13px; color:var(--muted); margin-top:6px; }
+.price-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:18px; }
+@media (max-width:560px){ .price-grid{ grid-template-columns:1fr; } }
+.price-card{ background:var(--surface); border-radius:18px; padding:22px 18px; box-shadow:var(--shadow); border:1px solid var(--border); position:relative; }
+.price-card.featured{ background:var(--lavender-bg); border:2px solid var(--lavender); }
+.price-badge{ position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--green); color:var(--text); font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:6px 16px; border-radius:100px; white-space:nowrap; }
+.price-badge.lav{ background:var(--lavender); color:#fff; }
+.price-card h3{ font-weight:600; font-size:15px; text-align:center; margin-bottom:10px; color:var(--text); }
+.price-amount{ text-align:center; font-weight:800; font-size:30px; color:var(--text); }
+.price-amount span{ font-size:14px; font-weight:500; color:var(--muted); }
+.price-period{ text-align:center; font-size:11.5px; color:var(--muted); margin-bottom:16px; margin-top:2px; }
+.price-list{ list-style:none; }
+.price-list li{ font-size:12.5px; color:var(--text); padding:6px 0; display:flex; align-items:flex-start; gap:8px; line-height:1.5; }
+.price-check{ color:var(--green-dark); flex-shrink:0; font-weight:700; }
+.price-note{ text-align:center; font-size:12px; color:var(--muted); margin-bottom:18px; }
+.price-fit{ text-align:center; font-size:11.5px; color:var(--muted); line-height:1.5; margin:-2px 0 14px; }
+.sell-btn{ display:flex; align-items:center; justify-content:center; gap:8px; background:var(--green); color:var(--text); font-size:14.5px; font-weight:700; padding:16px 30px; border-radius:100px; text-decoration:none; width:100%; max-width:340px; margin:0 auto; }
+.sell-btn-arrow{ display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; background:var(--text); border-radius:50%; color:var(--green); font-size:11px; flex-shrink:0; }
+
+/* ФУТЕР */
+.nh-footer{ position:relative; z-index:10; max-width:720px; margin:0 auto; padding:0 var(--p) 40px; }
+.nh-footer-inner{ background:var(--surface2); border-radius:18px; padding:18px 20px; text-align:center; }
+.nh-footer-name{ font-weight:600; font-size:17px; letter-spacing:-0.01em; color:var(--text); }
+.nh-footer-sub{ font-size:11px; color:var(--muted); margin-top:3px; }
+
+@keyframes fadeUp{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
+
+/* КОМПАКТНАЯ МОБИЛЬНАЯ ВЕРСИЯ */
+@media (max-width:600px){
+  :root{ --p:16px; }
+  .nh-header{ padding-top:16px; }
+  .nh-divider{ margin-top:14px; padding-bottom:14px; }
+  .nh-main{ padding-top:18px; padding-bottom:36px; }
+
+  .nh-hero{ margin-bottom:20px; }
+  .nh-title{ font-size:clamp(26px,8vw,34px); }
+  .nh-subtitle{ margin-top:10px; font-size:13.5px; }
+  .nh-meta{ gap:6px; margin-top:14px; }
+  .nh-pill{ padding:13px 8px; border-radius:12px; text-align:center; }
+  .nh-pill .t{ font-size:13.5px; }
+  .nh-pill .d{ font-size:10.5px; line-height:1.4; }
+
+  .nh-section{ margin-bottom:22px; }
+  .section-header{ margin-bottom:12px; }
+  .section-title{ font-size:18px; }
+  .section-intro{ margin-bottom:12px; font-size:13px; }
+
+  .speech-bubble{ padding:14px 16px; margin-bottom:14px; font-size:13px; }
+
+  .feature{ gap:10px; margin-bottom:12px; }
+  .feature-icon{ width:34px; height:34px; font-size:15px; border-radius:10px; }
+  .feature h3{ font-size:14.5px; }
+  .feature p{ font-size:12.5px; }
+
+  .module{ padding:13px 13px 13px 50px; margin-bottom:8px; border-radius:14px; }
+  .module-num{ width:24px; height:24px; left:12px; top:13px; font-size:11px; border-radius:8px; }
+  .module h3{ font-size:14px; }
+
+  .simple-card{ padding:12px 14px; margin-bottom:6px; border-radius:12px; }
+
+  .bonus-banner{ padding:12px 15px; margin-bottom:12px; font-size:13px; }
+
+  .outcome-grid{ gap:7px; }
+  .outcome-card{ padding:14px 8px; border-radius:12px; }
+  .outcome-card .t{ font-size:12.5px; }
+  .outcome-card .d{ font-size:10.5px; line-height:1.35; }
+
+  .price-lead{ margin-bottom:16px; }
+  .price-lead h2{ font-size:22px; }
+  .price-lead p{ font-size:12.5px; }
+  .price-grid{ gap:10px; margin-bottom:14px; }
+  .price-card{ padding:18px 15px; border-radius:16px; }
+  .price-card h3{ margin-bottom:8px; }
+  .price-amount{ font-size:26px; }
+  .price-period{ margin-bottom:12px; }
+  .price-fit{ margin:-1px 0 12px; }
+  .price-list li{ padding:5px 0; font-size:12px; }
+  .price-note{ margin-bottom:14px; font-size:11.5px; }
+  .sell-btn{ padding:14px 24px; font-size:14px; }
+
+  .nh-footer-inner{ padding:15px 16px; }
+  .nh-footer-name{ font-size:16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="blob-container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<header class="nh-header">
+  <div class="nh-header-inner">
+    <a class="nh-logo" href="#">
+      <span class="nh-logo-top disp">Марго</span>
+      <span class="nh-logo-bottom script">дизайн</span>
+    </a>
+    <div class="nh-badge">Программа</div>
+  </div>
+  <div class="nh-divider"></div>
+</header>
+
+<main class="nh-main">
+
+  <!-- HERO -->
+  <div class="nh-hero">
+    <span class="nh-tag">Программа · 2 месяца</span>
+    <h1 class="nh-title inter">«Дизайн с результатом»</h1>
+    <p class="nh-subtitle">Программа сопровождения для дизайнеров</p>
+    <div class="nh-meta">
+      <div class="nh-pill dark"><div class="t">2 месяца</div><div class="d">Интенсивного обучения</div></div>
+      <div class="nh-pill alt"><div class="t">Портфолио</div><div class="d">Готовые кейсы и проекты</div></div>
+      <div class="nh-pill lav"><div class="t">Клиенты</div><div class="d">Стратегия поиска и работы</div></div>
+    </div>
+  </div>
+
+  <!-- О ПРОГРАММЕ -->
+  <div class="nh-section">
+    <div class="section-header">
+      <div class="section-title disp">О программе</div>
+    </div>
+
+    <div class="speech-bubble">Формат, в котором я лично помогаю тебе разобраться в дизайне, навести порядок в визуале и уверенно двигаться к результату</div>
+
+    <div class="feature">
+      <div class="feature-icon">🤝</div>
+      <div>
+        <h3>Поддержка</h3>
+        <p>Личное сопровождение на каждом этапе обучения. Разбираем твои вопросы и помогаем преодолеть сложности в дизайне.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">✏️</div>
+      <div>
+        <h3>Разборы макетов</h3>
+        <p>Детальный анализ твоих работ с конкретными рекомендациями по улучшению композиции, цвета и типографики.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- СКОЛЬКО ДЛИТСЯ -->
+  <div class="nh-section">
+    <div class="section-header">
+      <div class="section-title disp">Сколько длится?</div>
+    </div>
+    <p class="section-intro">Сопровождение длится <b>2 месяца</b>. За это время ты проходишь полный путь от базовых навыков в Figma до первых клиентов и готового портфолио.</p>
+
+    <div class="module">
+      <div class="module-num">1</div>
+      <h3>Неделя 1–2</h3>
+      <p>Освоение Figma и базовых принципов дизайна</p>
+    </div>
+    <div class="module">
+      <div class="module-num">2</div>
+      <h3>Неделя 3–4</h3>
+      <p>Создание первых макетов и их разбор</p>
+    </div>
+    <div class="module">
+      <div class="module-num">3</div>
+      <h3>Неделя 5–6</h3>
+      <p>Формирование портфолио и кейсов</p>
+    </div>
+    <div class="module">
+      <div class="module-num">4</div>
+      <h3>Неделя 7–8</h3>
+      <p>Поиск клиентов и запуск практики</p>
+    </div>
+  </div>
+
+  <!-- БЛОК 1 -->
+  <div class="nh-section">
+    <div class="section-header">
+      <div class="section-title disp">Блок 1 — Figma и базовые навыки</div>
+      <div class="section-sub">Разберёмся с инструментами</div>
+    </div>
+
+    <div class="module">
+      <div class="module-num">1</div>
+      <h3>Освоение Figma</h3>
+      <p>От простого к сложному — изучаем все инструменты программы, горячие клавиши и профессиональные приёмы работы</p>
+    </div>
+    <div class="module">
+      <div class="module-num">2</div>
+      <h3>Настройка файлов</h3>
+      <p>Правильная организация проекта: создание сеток, настройка цветовых палитр, подбор и настройка шрифтов</p>
+    </div>
+    <div class="module">
+      <div class="module-num">3</div>
+      <h3>Практика на макетах</h3>
+      <p>Создаём реальные проекты: посты для социальных сетей, баннеры для рекламы, презентации для бизнеса</p>
+    </div>
+    <div class="module">
+      <div class="module-num">4</div>
+      <h3>Разбор и исправления</h3>
+      <p>Детальный анализ твоих работ с конкретными рекомендациями по улучшению композиции и визуальной иерархии</p>
+    </div>
+  </div>
+
+  <!-- БЛОК 2 -->
+  <div class="nh-section">
+    <div class="section-header">
+      <div class="section-title disp">Блок 2 — Визуал и оформление соцсетей</div>
+    </div>
+
+    <div class="simple-card">
+      <h4>Продающее портфолио</h4>
+      <p>Создаём портфолио, которое привлекает клиентов и демонстрирует твои навыки в лучшем свете</p>
+    </div>
+    <div class="simple-card">
+      <h4>Кейсы для платформ</h4>
+      <p>Адаптируем работы для Instagram, Telegram и Behance — каждая платформа требует своего подхода</p>
+    </div>
+    <div class="simple-card">
+      <h4>Стиль и структура</h4>
+      <p>Разрабатываем единый визуальный стиль и логичную структуру подачи проектов</p>
+    </div>
+    <div class="simple-card">
+      <h4>Упаковка соцсетей</h4>
+      <p>Оформляем профили так, чтобы они работали как витрина твоих услуг и привлекали целевую аудиторию</p>
+    </div>
+  </div>
+
+  <!-- БЛОК 3 -->
+  <div class="nh-section">
+    <div class="section-header">
+      <div class="section-title disp">Блок 3 — Портфолио и позиционирование</div>
+    </div>
+
+    <div class="simple-card lav">
+      <h4>Структура кейсов</h4>
+      <p>Учимся правильно подавать проекты по схеме: задача → решение → результат</p>
+    </div>
+    <div class="simple-card lav">
+      <h4>Ценообразование</h4>
+      <p>Формируем прозрачную систему ценообразования и создаём пакеты услуг для разных типов клиентов</p>
+    </div>
+    <div class="simple-card lav">
+      <h4>Позиционирование</h4>
+      <p>Выстраиваем уникальное позиционирование: определяем твои сильные стороны и учимся их презентовать</p>
+    </div>
+  </div>
+
+  <!-- БЛОК 4 -->
+  <div class="nh-section">
+    <div class="section-header">
+      <div class="section-title disp">Блок 4 — Работа с клиентами</div>
+    </div>
+
+    <div class="simple-card">
+      <h4>Поиск клиентов</h4>
+      <p>Где искать клиентов без «рандома» — проверенные каналы и стратегии привлечения заказчиков</p>
+    </div>
+    <div class="simple-card">
+      <h4>Оформление прайса</h4>
+      <p>Подготовка и правильное оформление прайс-листа, который продаёт и отсеивает неподходящих клиентов</p>
+    </div>
+    <div class="simple-card">
+      <h4>Скрипты общения</h4>
+      <p>Готовые шаблоны для переписок с клиентами на всех этапах — от первого контакта до сдачи проекта</p>
+    </div>
+    <div class="simple-card">
+      <h4>Работа с возражениями</h4>
+      <p>Как не занижать цену и уверенно отвечать на возражения клиентов по стоимости услуг</p>
+    </div>
+    <div class="simple-card">
+      <h4>Разбор диалогов</h4>
+      <p>Анализируем твои реальные переписки с клиентами и корректируем подход к коммуникации</p>
+    </div>
+  </div>
+
+  <!-- РЕЗУЛЬТАТЫ -->
+  <div class="nh-section">
+    <div class="section-header">
+      <div class="section-title disp">Результаты после программы</div>
+    </div>
+    <p class="section-intro">Что ты получишь через 2 месяца:</p>
+
+    <div class="outcome-grid">
+      <div class="outcome-card"><div class="t">Готовое портфолио</div><div class="d">Кейсы и проекты</div></div>
+      <div class="outcome-card"><div class="t">Упакованные соцсети</div><div class="d">Instagram и Behance</div></div>
+      <div class="outcome-card"><div class="t">Чёткий прайс</div><div class="d">Понимание своей стоимости</div></div>
+      <div class="outcome-card"><div class="t">Первые клиенты</div><div class="d">Или стратегия их поиска</div></div>
+      <div class="outcome-card"><div class="t">Уверенность в навыках</div><div class="d">Профессиональная самооценка</div></div>
+      <div class="outcome-card"><div class="t">Проверенные скрипты</div><div class="d">Шаблоны для общения с клиентами</div></div>
+    </div>
+  </div>
+
+  <!-- СТОИМОСТЬ -->
+  <div class="nh-section">
+    <div class="price-lead">
+      <h2 class="disp">Стоимость участия</h2>
+      <p>Выбери тариф в зависимости от твоего уровня</p>
+    </div>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-badge">Пошагово</div>
+        <h3>С нуля</h3>
+        <div class="price-amount inter">34 900 <span>₽</span></div>
+        <div class="price-period">за 2 месяца</div>
+        <div class="price-fit">Если только начинаешь и ещё не работал(а) в Figma</div>
+        <ul class="price-list">
+          <li><span class="price-check">✓</span>Блок 1 — Figma и базовые навыки</li>
+          <li><span class="price-check">✓</span>Блок 2 — Визуал и оформление соцсетей</li>
+          <li><span class="price-check">✓</span>Блок 3 — Портфолио и позиционирование</li>
+          <li><span class="price-check">✓</span>Блок 4 — Работа с клиентами</li>
+          <li><span class="price-check">✓</span>Разборы макетов с рекомендациями</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge lav">Хит продаж</div>
+        <h3>Прокачка</h3>
+        <div class="price-amount inter">29 900 <span>₽</span></div>
+        <div class="price-period">за 2 месяца</div>
+        <div class="price-fit">Если уже знаешь Figma и хочешь выйти на новый уровень</div>
+        <ul class="price-list">
+          <li><span class="price-check">✓</span>Без базового обучения — сразу в дело</li>
+          <li><span class="price-check">✓</span>Блок 2 — Визуал и оформление соцсетей</li>
+          <li><span class="price-check">✓</span>Блок 3 — Портфолио и позиционирование</li>
+          <li><span class="price-check">✓</span>Блок 4 — Работа с клиентами</li>
+          <li><span class="price-check">✓</span>Разборы макетов с рекомендациями</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="price-note">Возможна оплата частями · Актуальные условия уточняйте у Марго лично</p>
+
+    <a class="sell-btn" href="https://t.me/m/-zsoxiR8MDIy" target="_blank" rel="noopener">
+      Обсудить участие с Марго
+      <span class="sell-btn-arrow">→</span>
+    </a>
+  </div>
+
+</main>
+
+<footer class="nh-footer">
+  <div class="nh-footer-inner">
+    <div class="nh-footer-name disp">Марго</div>
+    <div class="nh-footer-sub">«Дизайн с результатом» · программа сопровождения</div>
+  </div>
+</footer>
+
+</body>
+</html>
