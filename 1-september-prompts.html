@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eef0e8">
+  <meta name="description" content="20 готовых промптов для нейрофотосессии ребёнка к 1 сентября от чат-клуба «Нейрохаки».">
+  <title>1 сентября — 20 промптов для нейрофотосессии</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#eef0e8;--surface:#fff;--ink:#1a1a2e;--muted:#74748d;--green:#b8e05a;--green-deep:#5a8a1a;--lavender:#9b8fd4;--lavender-soft:#eceaf8;--line:rgba(26,26,46,.09);--shadow:0 12px 36px rgba(29,31,44,.08);--radius:22px;--pad:20px}
+    @media(min-width:700px){:root{--pad:32px}}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{min-height:100vh;background:var(--bg);color:var(--ink);font-family:'Onest',sans-serif;line-height:1.65;overflow-x:hidden}
+    button,a{-webkit-tap-highlight-color:transparent}
+    .blobs{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+    .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.28}
+    .b1{width:430px;height:430px;right:-180px;top:-140px;background:var(--green)}
+    .b2{width:360px;height:360px;left:-170px;top:34%;background:var(--lavender);opacity:.18}
+    .b3{width:300px;height:300px;right:-130px;bottom:4%;background:var(--green);opacity:.17}
+    .wrap{width:min(760px,100%);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+    header{padding-top:22px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+    .logo{line-height:.88;text-decoration:none;color:var(--ink);font-weight:800;font-size:19px;letter-spacing:.06em}
+    .logo span{display:block;font-family:'Caveat',cursive;color:var(--lavender);font-size:22px;letter-spacing:0;transform:rotate(-3deg);margin-left:18px}
+    .badge{display:flex;align-items:center;gap:8px;background:var(--ink);color:var(--green);padding:8px 13px 8px 9px;border-radius:999px;font-size:11px;font-weight:600;white-space:nowrap}
+    .badge i{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--lavender);color:white;font-style:normal}
+    .hero{padding-top:44px;padding-bottom:28px;animation:up .55s ease both}
+    .eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:11px}
+    h1{font-size:clamp(42px,11vw,76px);line-height:.96;letter-spacing:-.045em;max-width:680px}
+    h1 span{display:block;font-family:'Caveat',cursive;font-size:.76em;line-height:1;color:var(--lavender);letter-spacing:0;transform:rotate(-1deg);margin-top:5px}
+    .lead{font-size:15px;color:var(--muted);max-width:620px;margin-top:20px}
+    .quick{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin-bottom:34px;border-left:5px solid var(--green)}
+    .quick-label{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--green-deep);margin-bottom:8px}
+    .quick p{font-size:14px;color:#3c3c55}
+    .quick p+p{margin-top:10px}
+    .quick strong{color:var(--ink)}
+    .tabs{position:sticky;top:8px;z-index:20;display:grid;grid-template-columns:1fr 1fr;gap:6px;background:rgba(255,255,255,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:6px;border:1px solid var(--line);border-radius:999px;box-shadow:0 8px 28px rgba(29,31,44,.08);margin-bottom:26px}
+    .tab{border:0;background:transparent;color:var(--muted);font:600 13px 'Onest',sans-serif;padding:11px 13px;border-radius:999px;cursor:pointer}
+    .tab.active{background:var(--ink);color:var(--green)}
+    .series{margin-bottom:36px}
+    .series[hidden]{display:none}
+    .series-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px}
+    .series-head small{display:block;color:var(--lavender);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;margin-bottom:3px}
+    .series-head h2{font-size:25px;line-height:1.15}
+    .series-count{font-size:12px;color:var(--muted);white-space:nowrap}
+    .prompts{display:flex;flex-direction:column;gap:14px}
+    .prompt-card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(255,255,255,.55)}
+    .prompt-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:18px 18px 14px;border-bottom:1px solid var(--line)}
+    .title-row{display:flex;align-items:flex-start;gap:11px}
+    .number{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--green);font-size:12px;font-weight:800;flex:0 0 auto}
+    .creative .number{background:var(--lavender-soft);color:#6559a3}
+    .prompt-head h3{font-size:15px;line-height:1.35;padding-top:6px}
+    .copy-btn{border:0;border-radius:999px;background:var(--lavender-soft);color:#6559a3;font:700 11px 'Onest',sans-serif;padding:9px 12px;cursor:pointer;white-space:nowrap;transition:.2s ease}
+    .copy-btn:active{transform:scale(.96)}
+    .copy-btn.copied{background:var(--green);color:var(--ink)}
+    pre{font:400 13px/1.72 'Onest',sans-serif;white-space:pre-wrap;word-wrap:break-word;color:#3c3c55;padding:18px;max-height:270px;overflow:auto;background:linear-gradient(180deg,#fff,#fcfcfb)}
+    .sell{position:relative;overflow:hidden;background:var(--ink);color:white;border-radius:28px;padding:28px 24px;margin:48px 0 32px;box-shadow:0 20px 50px rgba(26,26,46,.18)}
+    .sell:after{content:'✦';position:absolute;right:-17px;top:-48px;color:var(--green);font-size:170px;line-height:1;opacity:.12;transform:rotate(18deg)}
+    .sell small{display:block;color:var(--green);font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}
+    .sell h2{position:relative;z-index:1;font-size:clamp(26px,7vw,39px);line-height:1.08;letter-spacing:-.03em;max-width:610px}
+    .sell h2 span{display:block;font-family:'Caveat',cursive;color:var(--green);font-size:1.15em;letter-spacing:0;transform:rotate(-1deg)}
+    .sell p{position:relative;z-index:1;color:rgba(255,255,255,.72);font-size:14px;margin-top:15px;max-width:590px}
+    .sell ul{position:relative;z-index:1;list-style:none;display:grid;grid-template-columns:1fr;gap:9px;margin:20px 0}
+    .sell li{font-size:13px;color:rgba(255,255,255,.9);padding-left:25px;position:relative}
+    .sell li:before{content:'✓';position:absolute;left:0;top:0;color:var(--green);font-weight:800}
+    .cta{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;width:100%;padding:15px 20px;border-radius:999px;background:var(--green);color:var(--ink);text-decoration:none;font-size:14px;font-weight:800;transition:.2s ease}
+    .cta:active{transform:scale(.98)}
+    footer{padding:0 0 35px;text-align:center;color:var(--muted);font-size:11px}
+    footer b{color:var(--ink);letter-spacing:.08em}
+    .toast{position:fixed;left:50%;bottom:22px;z-index:50;transform:translate(-50%,18px);background:var(--ink);color:white;border-radius:999px;padding:11px 16px;font-size:12px;font-weight:600;opacity:0;pointer-events:none;transition:.25s ease;white-space:nowrap}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    @keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    @media(min-width:620px){.sell{padding:38px}.sell ul{grid-template-columns:1fr 1fr}.prompt-head{padding:20px 22px 15px}pre{padding:20px 22px}.copy-btn{font-size:12px;padding:9px 15px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="blobs" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
+  <header class="wrap">
+    <div class="topbar">
+      <a class="logo" href="#top">НЕЙРО<span>хаки</span></a>
+      <div class="badge"><i>↗</i> чат-клуб по нейросетям</div>
+    </div>
+  </header>
+
+  <main class="wrap" id="top">
+    <section class="hero">
+      <div class="eyebrow">Готовая подборка · 20 промптов</div>
+      <h1>Первое сентября <span>в кадре, который хочется сохранить</span></h1>
+      <p class="lead">Двадцать идей для фотореалистичной нейрофотосессии ребёнка: от тёплой школьной классики до необычных кадров с эффектной перспективой.</p>
+    </section>
+
+    <aside class="quick">
+      <div class="quick-label">Как пользоваться</div>
+      <p><strong>1.</strong> Прикрепите фотографию ребёнка к генерации. <strong>2.</strong> Выберите понравившийся сюжет. <strong>3.</strong> Нажмите «Скопировать» и вставьте промпт в нейросеть.</p>
+      <p><strong>Для всех кадров:</strong> используйте фотографию ребёнка как строгий референс внешности и идентичности. Сохраняйте лицо, возраст, форму глаз, носа и губ, цвет глаз, оттенок кожи, цвет, длину и структуру волос. Не делайте ребёнка старше. Фотореализм, естественная кожа, корректная анатомия и руки, без текста, логотипов и водяных знаков.</p>
+    </aside>
+
+    <nav class="tabs" aria-label="Разделы подборки">
+      <button class="tab active" type="button" data-target="classic">Классика · 1–10</button>
+      <button class="tab" type="button" data-target="creative">Креатив · 11–20</button>
+    </nav>
+
+    <section class="series" id="classic">
+      <div class="series-head"><div><small>Серия 01</small><h2>Школьная классика</h2></div><span class="series-count">10 промптов</span></div>
+      <div class="prompts">
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">01</span><h3>Первое сентября у школы</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Используй прикреплённую фотографию ребёнка как строгий референс внешности. Создай вертикальную фотореалистичную фотографию в стиле премиальной кинематографичной семейной фотосессии. Ребёнок стоит перед красивой современной школой ранним сентябрьским утром. На заднем плане светлый фасад, широкие ступени и сильно размытые силуэты школьников и родителей. На ребёнке стильная современная школьная форма: белая рубашка или блузка, графитовые, тёмно-синие или серые элементы. В одной руке небольшой эстетичный букет сезонных цветов, за плечами школьный рюкзак. Естественная радостная улыбка. Мягкое золотистое утреннее солнце сбоку и позади создаёт контровой свет вокруг волос, лёгкий ветер двигает волосы и одежду. Средний портрет примерно по колени, камера на уровне глаз. Full-frame camera, 50mm, f/2.0, shallow depth of field, cinematic bokeh, realistic skin and hair, premium editorial photography.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">02</span><h3>По дороге в школу</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Вертикальная кинематографичная фотография. Ребёнок идёт по дорожке к современной школе, кадр пойман непосредственно во время шага. За плечами аккуратный рюкзак, в одной руке небольшой букет. Одна нога впереди, свободная рука естественно движется, волосы подхвачены ветром. Ребёнок слегка поворачивает голову к камере и улыбается. Камера немного ниже уровня глаз. В глубине вход в школу и размытые фигуры людей, первые зелёно-золотистые листья сентября. Мягкий солнечный контровой свет. 50mm, f/2.2, fast shutter speed, natural motion, shallow depth of field, cinematic lifestyle photography.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">03</span><h3>Школьная классика за винтажной партой</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Ребёнок сидит на краю красивой винтажной деревянной школьной парты. Элегантная современная школьная форма: белая рубашка или блузка, графитовые или тёмно-синие элементы. Рядом винтажный глобус, небольшая стопка книг, красное яблоко и несколько карандашей. Композиция эстетичная и не перегруженная. Ребёнок слегка повёрнут относительно камеры, руки естественно расположены, мягкая спокойная улыбка. Тёплая нейтральная классная комната, солнечные полосы света из большого окна. Medium full-body portrait, eye-level, 50mm, f/2.8, realistic textures, sophisticated nostalgic school atmosphere.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">04</span><h3>У большой меловой доски</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Ребёнок стоит перед большой матовой чёрной школьной доской, занимающей почти весь фон. Белый верх, тёмный низ, в руке небольшой кусочек мела. На доске вокруг ребёнка простые эстетичные рисунки белым мелом: звёзды, маленькая корона, книга, карандаш, бумажный самолётик, математические символы и стрелки. Никаких читаемых фраз. Ребёнок стоит немного боком, голова повернута к камере. Мягкий направленный свет на лице, тёмный фон. Medium full-body portrait, slightly low angle, 50mm, f/2.8, high-end children's fashion editorial, subtle chalk texture.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">05</span><h3>Мир книг — съёмка сверху</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Камера строго сверху, bird's-eye view. Ребёнок лежит на спине на светлом тёплом деревянном полу и смотрит прямо в объектив. Вокруг художественно разложены раскрытые книги, тетради, цветные карандаши, бумажные самолётики, красные яблоки и первые жёлто-оранжевые листья. Рядом закрытый школьный рюкзак. Современная школьная форма, расслабленная поза. Мягкий дневной свет из окна, естественные тени. Perfect overhead composition, 35mm, editorial flat-lay combined with portrait photography, ultra-realistic textures.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">06</span><h3>Большая библиотека</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Ребёнок находится между двумя высокими симметричными рядами книжных стеллажей. Стеллажи уходят вверх и далеко в глубину. Ребёнок держит раскрытую книгу и слегка поднимает взгляд вверх. Лаконичная школьная форма, рядом рюкзак. Камера немного ниже уровня глаз, благодаря чему пространство кажется огромным. Через высокое окно сбоку проходит тёплый солнечный луч с едва заметными частицами пыли. Medium full-body cinematic shot, 35mm, f/2.8, symmetrical composition, leading lines, premium movie still aesthetic.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">07</span><h3>Сентябрьская аллея</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Раннее сентябрьское утро. Ребёнок идёт по красивой аллее возле школы. Деревья преимущественно зелёные, но появляются первые золотистые листья. Несколько листьев летят в воздухе. За плечами рюкзак, в руке книга или небольшой букет. Ребёнок идёт навстречу камере или по диагонали и чему-то естественно улыбается, не смотря прямо в объектив. Низкое солнце проходит между деревьями, золотой контровой свет и мягкие lens flares. Full-body walking shot, camera at child's height, 50mm, f/2.0.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">08</span><h3>School Fashion</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Современная минималистичная школа: светлый камень, стекло, геометричные линии. Никаких шариков и стандартных фотозон. На ребёнке современный preppy school look: белая рубашка, тёмный жакет или жилет, лаконичный школьный низ, носки/гольфы и аккуратная обувь. Рюкзак стоит рядом. Ребёнок занимает около трети кадра, много архитектурного пространства. Спокойная уверенная поза. Камера немного ниже уровня глаз. Full-body editorial portrait, 50mm, f/3.2, clean geometric composition, luxury children's fashion campaign aesthetic.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">09</span><h3>Крупный портрет с книгой</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Очень красивый кинематографичный крупный портрет. Ребёнок держит раскрытую книгу чуть ниже лица и только что отвёл от неё взгляд прямо в объектив. Белая школьная рубашка или блузка. Сильно размытый класс или библиотека на заднем плане. Мягкий солнечный свет сбоку подчёркивает глаза, естественную кожу и отдельные пряди волос. Chest-up composition, eye-level, 85mm, f/1.8, creamy cinematic bokeh, authentic child skin, no beauty retouching.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">10</span><h3>Радость и движение</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Ребёнок перед современной школой радостно подпрыгивает или бежит навстречу камере. Рюкзак движется вместе с телом, волосы естественно подлетают. В воздухе несколько жёлтых и оранжевых листьев и 2–3 бумажных самолётика. Искренняя улыбка. Солнце позади создаёт золотой контур. Камера низко, примерно на уровне пояса. Full-body dynamic shot, 35mm, f/2.8, fast shutter speed, premium advertising photography.</pre></article>
+      </div>
+    </section>
+
+    <section class="series creative" id="creative" hidden>
+      <div class="series-head"><div><small>Серия 02</small><h2>Креативная серия</h2></div><span class="series-count">10 промптов</span></div>
+      <div class="prompts">
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">11</span><h3>POV изнутри школьного рюкзака</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Камера физически находится внутри открытого школьного рюкзака, практически на самом дне, и смотрит наружу вверх. Тёмные края рюкзака обрамляют изображение. Совсем рядом с объективом — сильно размытый пенал, карандаши, угол тетради и линейка. Ребёнок наклоняется над камерой и заглядывает внутрь. Одна рука протянута прямо к объективу, ладонь значительно ближе и крупнее лица из-за перспективы. Белая рубашка/блузка, графитовый жилет или жакет. 18–20mm, POV from inside backpack, extreme foreground distortion, deep layered composition. Главное: камера обязательно внутри рюкзака, а не перед ребёнком.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">12</span><h3>Школьный ураган</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Ребёнок энергично идёт прямо на камеру по длинному школьному коридору. Камера буквально в нескольких сантиметрах над полом и направлена вверх. Одна нога делает широкий шаг почти над объективом, ближайшая обувь огромная в переднем плане. В воздухе динамично летят листы тетрадей, бумажные самолётики, карандаши и первые осенние листья. Часть объектов проходит непосредственно перед объективом, часть рядом с ребёнком, часть далеко позади — минимум три слоя глубины. Волосы и одежда движутся. Ultra-wide 20mm, extreme low angle, full-body action shot, frozen high-speed photography, premium children's fashion campaign.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">13</span><h3>Сквозь страницы</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Огромная раскрытая книга расположена в нескольких сантиметрах от объектива и занимает левую, правую и нижнюю части изображения. Между приподнятыми страницами остаётся V-образный просвет. Через него видно лицо ребёнка, сидящего дальше за партой. Глаза точно внутри рамки и идеально резкие. Ребёнок смотрит прямо через книгу в объектив. Страницы переднего плана сильно размыты. 85mm, f/1.8, extreme foreground framing, focus precisely on eyes. Книга обязательно находится между камерой и ребёнком.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">14</span><h3>Воронка знаний</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Perfect bird's-eye view: камера строго вертикально над сценой. Ребёнок лежит на полу по диагонали и смотрит вверх. Одна рука протянута к камере. Вокруг ребёнка огромная спиральная воронка из раскрытых книг, страниц, тетрадей, карандашей, линеек, бумажных самолётиков, яблок и осенних листьев. Ближе к ребёнку предметы лежат на полу, дальше часть словно поднимается, создавая замерший вихрь. Несколько страниц проходят близко к объективу. 24mm, dramatic radial composition, high-speed frozen motion, photorealistic surrealism.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">15</span><h3>Гигантский школьный мир</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Фотореалистичный сюрреалистичный editorial. Ребёнок оказался в мире, где канцелярские предметы имеют архитектурный масштаб. Он сидит высоко на краю гигантской стопки книг, каждая книга толщиной почти с тело. Рядом огромный деревянный карандаш выше ребёнка, гигантская линейка диагонально прислонена к книгам, на полу огромный красный ластик и скрепки. В руке ребёнка обычный карандаш нормального размера для контраста. Камера очень низко и резко смотрит вверх. Extreme low-angle EWS, 18mm ultra-wide, monumental scale, physically accurate materials and contact shadows. Всё выглядит как реальная огромная декорация, а не мультфильм.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">16</span><h3>Мир в отражении глобуса</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Большой винтажный глобус находится непосредственно перед камерой и занимает около половины кадра. Камера фокусируется на чётком отражении лица ребёнка в изогнутой глянцевой поверхности глобуса. Отражение имеет лёгкое естественное оптическое искажение, но лицо узнаваемо. Настоящий ребёнок позади глобуса и немного сбоку, видна только часть профиля или силуэта, мягко размытая. Тёплый солнечный луч создаёт блик на глобусе. Extreme close-up artistic photography, 85mm, f/1.8, focus precisely on reflected eyes, physically accurate curved-surface distortion.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">17</span><h3>Бесконечный школьный коридор</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Огромный длинный коридор построен в идеальной одноточечной перспективе. Камера лежит непосредственно на полу в начале коридора. Ребёнок бежит из глубины прямо к объективу и находится в средней трети кадра. Рюкзак подпрыгивает, волосы и одежда движутся. В самом переднем плане по полу катится крупный слегка размытый карандаш; рядом угол раскрытой тетради. В средней зоне ребёнок, в глубине яркий вход и силуэты других детей. Три выраженных плана. 18mm, floor-level ultra-low angle, EWS, strong leading lines, fast shutter speed.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">18</span><h3>Меловое облако</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Extreme close-up: лицо, часть волос, плечи и руки. Ребёнок перед матовой чёрной доской. На ладонях немного белой меловой пыли. Камера заморозила долю секунды после резкого хлопка ладонями: вокруг рук и частично лица объёмное облако из тысяч мельчайших частиц мела. Частицы расположены на разных расстояниях от камеры. Лицо остаётся открытым и узнаваемым. Узкий жёсткий свет сбоку и сзади подсвечивает частицы и контур волос, лицо мягко подсвечено спереди. 85mm, high-speed flash photography, frozen particles, dramatic side backlight. Это реальная сухая меловая пыль, не дым и не магия.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">19</span><h3>Перевёрнутое 1 сентября — отражение в луже</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Камера почти на уровне мокрого асфальта и направлена преимущественно вниз на большую чистую лужу. Основная часть изображения — отражение. В воде чётко отражаются ребёнок в школьной форме, рюкзак, фасад школы, небо и ветви с первыми жёлтыми листьями. Настоящий ребёнок почти не виден напрямую: сверху входят только ноги. Одна нога касается воды, от неё расходятся реалистичные концентрические круги, постепенно искажая отражение. Ground-level reflection photography, unconventional inverted composition, 35mm, physically accurate ripples and reflections.</pre></article>
+        <article class="prompt-card"><div class="prompt-head"><div class="title-row"><span class="number">20</span><h3>Прыжок прямо над камерой</h3></div><button class="copy-btn" type="button">Скопировать</button></div><pre>Камера лежит непосредственно на земле и смотрит почти вертикально вверх. Ребёнок в самой высокой точке прыжка перепрыгивает прямо через объектив. Одна подошва проходит очень близко к линзе и занимает крупную часть края изображения. Тело выше камеры, лицо хорошо видно, руки разведены для баланса. Рюкзак подлетает за спиной, из него вылетают несколько листов и 2–3 бумажных самолётика, в кадре также жёлтые листья. Позади голубое небо, верх школы и деревья. Солнце за ребёнком создаёт золотой rim light. 14–18mm ultra-wide, extreme worm's-eye view, frozen action, dramatic foreshortening. Ощущение, будто ребёнок буквально перелетает через зрителя.</pre></article>
+      </div>
+    </section>
+
+    <section class="sell">
+      <small>Хотите больше готовых решений?</small>
+      <h2>В чат-клубе мы не просто сохраняем идеи — <span>мы превращаем их в результат</span></h2>
+      <p>Внутри — новые инструкции, рабочие промпты, разборы нейросетей и помощь, если генерация не получается с первого раза.</p>
+      <ul><li>понятные пошаговые уроки;</li><li>готовые промпты для копирования;</li><li>актуальные инструменты и эффекты;</li><li>поддержка и разбор вопросов.</li></ul>
+      <a class="cta" href="https://linkrr.click/neirohaks" target="_blank" rel="noopener">Вступить в чат-клуб →</a>
+    </section>
+  </main>
+
+  <footer class="wrap"><b>НЕЙРОХАКИ</b><br>Сохраняйте подборку и создавайте свои школьные истории</footer>
+  <div class="toast" role="status" aria-live="polite">Промпт скопирован ✓</div>
+  <script>
+    const tabs=document.querySelectorAll('.tab');
+    const series=document.querySelectorAll('.series');
+    tabs.forEach(tab=>tab.addEventListener('click',()=>{
+      tabs.forEach(item=>item.classList.toggle('active',item===tab));
+      series.forEach(item=>item.hidden=item.id!==tab.dataset.target);
+      document.querySelector('.tabs').scrollIntoView({behavior:'smooth',block:'start'});
+    }));
+    const toast=document.querySelector('.toast');
+    const identityRule='Используй прикреплённую фотографию ребёнка как строгий референс внешности и идентичности. Точно сохрани лицо, возраст, форму глаз, носа и губ, цвет глаз, оттенок кожи, цвет, длину и структуру волос. Не делай ребёнка старше. Фотореализм, естественная кожа, корректная анатомия и руки, без текста, логотипов и водяных знаков.';
+    let toastTimer;
+    document.querySelectorAll('.copy-btn').forEach(button=>button.addEventListener('click',async()=>{
+      const prompt=button.closest('.prompt-card').querySelector('pre').innerText;
+      const value=identityRule+'\n\n'+prompt;
+      try{await navigator.clipboard.writeText(value)}catch(error){const area=document.createElement('textarea');area.value=value;document.body.appendChild(area);area.select();document.execCommand('copy');area.remove()}
+      document.querySelectorAll('.copy-btn.copied').forEach(item=>{item.classList.remove('copied');item.textContent='Скопировать'});
+      button.classList.add('copied');button.textContent='Готово ✓';
+      toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),1600);
+      setTimeout(()=>{button.classList.remove('copied');button.textContent='Скопировать'},1800);
+    }));
+  </script>
+</body>
+</html>
