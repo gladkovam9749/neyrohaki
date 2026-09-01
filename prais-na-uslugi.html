@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Прайс на услуги веб-дизайнера Марго Гладковой: оформление Telegram, ВКонтакте, Instagram, Taplink, стикеры и эмодзи.">
+  <title>Прайс на услуги — Марго Гладкова</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap');
+    :root{--bg:#09070a;--paper:#161116;--paper-2:#201319;--ink:#f8f2f2;--muted:#b9aeb1;--green:#ff3f54;--green-dark:#ff6b78;--lav:#e9a3ab;--lav-soft:#2b151d;--line:rgba(255,224,228,.12);--shadow:0 22px 58px rgba(0,0,0,.38);--radius:26px;--wine:#64172b;--scarlet:#c51f3b}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 85% 4%,rgba(155,20,49,.28),transparent 32%),radial-gradient(circle at 0 52%,rgba(91,14,37,.2),transparent 28%),var(--bg);color:var(--ink);font:15px/1.65 Inter,Arial,sans-serif}a{color:inherit}img{display:block;max-width:100%}
+    .orb{position:fixed;border-radius:50%;filter:blur(45px);pointer-events:none;z-index:-1}.o1{width:420px;height:420px;right:-170px;top:-130px;background:rgba(197,31,59,.26)}.o2{width:360px;height:360px;left:-180px;top:42%;background:rgba(100,23,43,.28)}
+    .wrap{width:min(1080px,calc(100% - 32px));margin:auto}.top{display:flex;align-items:center;justify-content:space-between;padding:22px 0}.brand{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.brand span{display:block;color:var(--lav);font:italic 600 20px/1 Playfair Display,serif;text-transform:none;letter-spacing:0}.contact{padding:10px 16px;border-radius:999px;background:linear-gradient(135deg,var(--scarlet),var(--wine));color:#fff;text-decoration:none;font-size:12px;font-weight:700;box-shadow:0 8px 24px rgba(197,31,59,.24)}.contact:hover{color:#fff;filter:brightness(1.12)}
+    .hero{position:relative;overflow:hidden;background:linear-gradient(125deg,#0d090d 8%,#2a1019 57%,#821b35 135%);color:#fff;border:1px solid rgba(255,180,190,.14);border-radius:34px;padding:64px 7%;box-shadow:var(--shadow)}.hero:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 28%,rgba(255,45,73,.22),transparent 31%)}.hero:after{content:'✦';position:absolute;right:-18px;top:-74px;font-size:280px;line-height:1;color:#ff4960;opacity:.16}.eyebrow{color:#ff687a;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.hero h1{position:relative;z-index:1;max-width:780px;margin:12px 0 16px;font-size:clamp(42px,8vw,82px);line-height:.96;letter-spacing:-.055em}.hero h1 em{display:block;color:#f0a8b1;font:italic 600 .72em/1.05 Playfair Display,serif;letter-spacing:-.02em}.hero p{position:relative;z-index:1;max-width:620px;color:#ddcfd2;font-size:clamp(16px,2vw,20px)}
+    .hero-actions{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:linear-gradient(135deg,#ed3650,#a81735);color:#fff;text-decoration:none;font-weight:800;box-shadow:0 10px 28px rgba(197,31,59,.28);transition:.2s ease}.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}.btn.secondary{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:none}
+    .nav{display:flex;gap:8px;overflow:auto;padding:24px 0 8px;scrollbar-width:none}.nav a{white-space:nowrap;padding:9px 14px;border-radius:999px;background:rgba(29,18,23,.86);border:1px solid var(--line);text-decoration:none;font-size:12px;font-weight:700;color:#e6dadd}.nav a:hover{border-color:rgba(255,73,96,.5);color:#ff8391}
+    main{padding:32px 0 80px}.section{scroll-margin-top:18px;margin:34px 0}.banner{width:100%;max-height:360px;object-fit:cover;border-radius:var(--radius);margin-bottom:18px;border:1px solid rgba(255,214,220,.1);box-shadow:var(--shadow)}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:0 4px 20px}.section-head small{color:#ff687a;font-weight:800;text-transform:uppercase;letter-spacing:.14em}.section h2{margin:4px 0 0;font-size:clamp(28px,5vw,48px);line-height:1.05;letter-spacing:-.04em}.section h2 em{color:var(--lav);font-family:Playfair Display,serif}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.cards.two{grid-template-columns:repeat(2,1fr)}.card{position:relative;background:linear-gradient(145deg,rgba(30,20,25,.96),rgba(17,12,16,.96));border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:0 12px 34px rgba(0,0,0,.2)}.card.featured{background:linear-gradient(145deg,#35141f,#1b1016);border-color:rgba(255,68,91,.32);box-shadow:0 16px 44px rgba(83,10,31,.26)}.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,63,84,.12);border:1px solid rgba(255,83,104,.22);color:#ff7585;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.card h3{margin:14px 0 4px;font-size:22px;line-height:1.15}.price{margin:0 0 18px;color:#f3a4ad;font-size:26px;font-weight:800}.card ul{list-style:none;margin:0;padding:0}.card li{position:relative;padding:7px 0 7px 20px;border-bottom:1px solid var(--line);color:#ded2d5}.card li:last-child{border:0}.card li:before{content:'✓';position:absolute;left:0;color:#ff6073;font-weight:800}.bonus{margin-top:16px;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,rgba(197,31,59,.22),rgba(100,23,43,.3));border:1px solid rgba(255,83,104,.16);color:#f2dfe2;font-size:13px;font-weight:700}.note{color:var(--muted);font-size:13px;font-style:italic}.list-card h3{margin-top:0}.price-list{display:grid;gap:10px}.price-row{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid var(--line);color:#ded2d5}.price-row:last-child{border:0}.price-row b{text-align:right;white-space:nowrap;color:#f3a4ad}
+    .section-cta{display:flex;justify-content:center;margin-top:18px}.more{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}.more-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:20px}.more-list span{padding:14px;border-radius:14px;background:linear-gradient(135deg,rgba(114,23,46,.45),rgba(46,19,29,.75));border:1px solid rgba(255,103,121,.12);font-weight:700}.final{position:relative;overflow:hidden;background:linear-gradient(125deg,#120b10,#35101d 62%,#7b1731);color:#fff;border:1px solid rgba(255,180,190,.14);border-radius:34px;padding:52px 7%;text-align:center;box-shadow:var(--shadow)}.final:before{content:'✦';position:absolute;left:-30px;bottom:-80px;color:#ff4c63;font-size:250px;opacity:.16}.final h2{position:relative;margin:0 auto 12px;max-width:720px;font-size:clamp(32px,6vw,56px);line-height:1.03}.final p{position:relative;color:#d6c7ca}.final .btn{position:relative;margin-top:12px}
+    footer{padding:24px 0 36px;color:var(--muted);font-size:12px;text-align:center}
+    @media(max-width:780px){.cards,.cards.two,.more{grid-template-columns:1fr}.hero{padding:46px 26px}.section-head{align-items:start;flex-direction:column}.more-list{grid-template-columns:1fr}.card{padding:22px}.top{gap:12px}.contact{padding:9px 12px}}
+  </style>
+</head>
+<body>
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="wrap">
+    <header class="top"><div class="brand">Марго Гладкова<span>design & education</span></div><a class="contact" href="https://t.me/Mommy_2yx" target="_blank" rel="noopener">Написать в Telegram</a></header>
+    <section class="hero">
+      <div class="eyebrow">Веб-дизайн • оформление соцсетей</div>
+      <h1>Прайс на <em>дизайн-услуги</em></h1>
+      <p>Создаю стильный, цепляющий визуал для вашего бизнеса в социальных сетях — от упаковки канала до сайта под ключ.</p>
+      <div class="hero-actions"><a class="btn" href="https://t.me/Mommy_2yx" target="_blank" rel="noopener">Заказать дизайн →</a><a class="btn secondary" href="#services">Посмотреть услуги</a></div>
+    </section>
+    <nav class="nav" id="services"><a href="#telegram">Telegram</a><a href="#stickers">Стикеры и эмодзи</a><a href="#vk">ВКонтакте</a><a href="#instagram">Instagram</a><a href="#taplink">Taplink</a><a href="#other">Другие услуги</a></nav>
+
+    <main>
+      <section class="section" id="telegram">
+        <img class="banner" src="https://img3.teletype.media/files/a2/b3/a2b35f22-31a6-420d-87de-c24b3d0da282.png" alt="Оформление Telegram-канала">
+        <div class="section-head"><div><small>Для экспертов, коучей, бьюти и других ниш</small><h2>Оформление <em>Telegram</em></h2></div></div>
+        <div class="cards">
+          <article class="card"><span class="tag">Старт</span><h3>Канал-презентация</h3><div class="price">6 000 ₽</div><ul><li>Аватар канала</li><li>До 10 обложек для постов</li><li>Рекомендации по дальнейшему ведению</li></ul><div class="bonus">Бонус: бот для постинга</div></article>
+          <article class="card"><span class="tag">Под ключ</span><h3>Канал под ключ</h3><div class="price">8 000 ₽</div><ul><li>Аватар канала</li><li>До 10 обложек для постов</li><li>Рекомендации по ведению</li><li>10 стикеров</li></ul><div class="bonus">Бонус: бот для постинга</div></article>
+          <article class="card featured"><span class="tag">Максимум</span><h3>Всё включено</h3><div class="price">12 000 ₽</div><ul><li>До 10 обложек для постов</li><li>10 стикеров</li><li>До 100 статичных букв-эмодзи и элементов</li></ul><div class="bonus">Бонус: бот для постинга + инструкция</div></article>
+        </div><div class="section-cta"><a class="btn" href="https://t.me/Mommy_2yx" target="_blank" rel="noopener">Заказать оформление</a></div>
+      </section>
+
+      <section class="section" id="stickers">
+        <div class="section-head"><div><small>Фирменный характер канала</small><h2>Стикеры и <em>эмодзи</em></h2></div></div>
+        <div class="cards two">
+          <article class="card list-card"><h3>Индивидуальные стикеры</h3><div class="price-list"><div class="price-row"><span>5 стикеров</span><b>2 000 ₽</b></div><div class="price-row"><span>10 стикеров</span><b>3 500 ₽</b></div><div class="price-row"><span>15 стикеров</span><b>5 000 ₽</b></div><div class="price-row"><span>Каждый следующий</span><b>500 ₽</b></div></div></article>
+          <article class="card list-card featured"><h3>Дизайн с помощью ИИ</h3><div class="price-list"><div class="price-row"><span>Разработка персонажа для стикеров</span><b>2 000 ₽</b></div><div class="price-row"><span>Обработка фото</span><b>2 000 ₽</b></div><div class="price-row"><span>Нейрофотосессия, 15 фото</span><b>5 000 ₽</b></div></div></article>
+          <article class="card list-card"><h3>Буквы, иконки и плашки</h3><div class="price-list"><div class="price-row"><span>50 статичных букв-эмодзи</span><b>3 500 ₽</b></div><div class="price-row"><span>До 50 статичных иконок</span><b>5 000 ₽</b></div><div class="price-row"><span>Плашки: 5 / 10 / 20 шт.</span><b>1 500 / 2 000 / 3 500 ₽</b></div></div><p class="note">В набор из 50 входят буквы А–Я, цифры 0–9 и 7 знаков препинания. Доступно в Telegram Premium.</p></article>
+          <article class="card list-card"><h3>Эмодзи-картинки с ИИ</h3><div class="price-list"><div class="price-row"><span>10 штук</span><b>3 500 ₽</b></div><div class="price-row"><span>20 штук</span><b>5 500 ₽</b></div><div class="price-row"><span>30 штук</span><b>7 500 ₽</b></div></div></article>
+        </div><div class="section-cta"><a class="btn" href="https://t.me/Mommy_2yx" target="_blank" rel="noopener">Заказать стикеры или эмодзи</a></div>
+      </section>
+
+      <section class="section" id="vk">
+        <img class="banner" src="https://img4.teletype.media/files/3b/8c/3b8c6980-23fe-4e92-89b6-2955da7eb13c.png" alt="Оформление сообщества ВКонтакте">
+        <div class="section-head"><div><small>Единый визуальный стиль</small><h2>Сообщество <em>ВКонтакте</em></h2></div></div>
+        <div class="cards">
+          <article class="card"><span class="tag">Лайт</span><h3>Пакет «Лайт»</h3><div class="price">от 5 500 ₽</div><ul><li>Обложка для компьютера и мобильных</li><li>Аватар</li></ul></article>
+          <article class="card"><span class="tag">Стандарт</span><h3>Пакет «Стандарт»</h3><div class="price">от 12 500 ₽</div><ul><li>Обложка и аватар</li><li>5 обложек сюжетов</li><li>5 обложек товаров или услуг</li><li>5 обложек меню</li><li>Виджет / обложка закреплённого поста</li><li>Установка обложек</li></ul></article>
+          <article class="card featured"><span class="tag">Под ключ</span><h3>Пакет «Под ключ»</h3><div class="price">от 14 500 ₽</div><ul><li>Обложка и аватар</li><li>По 7 обложек сюжетов, товаров и меню</li><li>Виджет и обложка закреплённого поста</li><li>5 шаблонов обложек для постов</li><li>Установка обложек</li></ul><div class="bonus">Бонус: сервис для продвижения</div></article>
+        </div><div class="section-cta"><a class="btn" href="https://t.me/Mommy_2yx" target="_blank" rel="noopener">Заказать оформление VK</a></div>
+      </section>
+
+      <section class="section" id="instagram">
+        <img class="banner" src="https://img4.teletype.media/files/36/97/36974355-c8c2-47e5-bef7-96f00c9264e7.png" alt="Оформление Instagram">
+        <div class="section-head"><div><small>Цельная и узнаваемая лента</small><h2>Оформление <em>Instagram</em></h2></div></div>
+        <div class="cards two">
+          <article class="card"><span class="tag">Base</span><h3>Тариф BASE</h3><div class="price">8 500 ₽</div><ul><li>Аватар</li><li>Оформление 12 постов</li><li>Коррекция фото при необходимости</li><li>5 обложек актуального</li><li>5 шаблонов для сторис</li><li>Подбор шрифтовых пар и цветовой гаммы</li></ul><div class="bonus">Срок: 3–4 дня</div></article>
+          <article class="card featured"><span class="tag">Maxi</span><h3>Тариф MAXI</h3><div class="price">10 500 ₽</div><ul><li>Аватар</li><li>Оформление 15 постов</li><li>Коррекция фото при необходимости</li><li>5 обложек актуального</li><li>5–7 шаблонов для сторис</li><li>Подбор шрифтовых пар и цветовой гаммы</li></ul><div class="bonus">Срок: 3–4 дня</div></article>
+        </div><p class="note">После окончания работы предоставляю шрифты и пустые текстовые блоки, если они используются в дизайне, для дальнейшего ведения ленты.</p><div class="section-cta"><a class="btn" href="https://t.me/Mommy_2yx" target="_blank" rel="noopener">Заказать оформление Instagram</a></div>
+      </section>
+
+      <section class="section" id="taplink">
+        <img class="banner" src="https://img3.teletype.media/files/a0/e7/a0e7c401-f57d-47f4-9291-bbfdf037469a.png" alt="Оформление Taplink">
+        <div class="section-head"><div><small>Дизайн и вёрстка</small><h2>Оформление <em>Taplink</em></h2></div></div>
+        <div class="cards two">
+          <article class="card featured"><span class="tag">Сайт</span><h3>Одностраничный сайт</h3><div class="price">15 000 ₽</div><ul><li>До 6 блоков</li><li>Дизайн блоков и вёрстка</li><li>Вставка 1–2 HTML-кодов</li></ul><p class="note">Один блок — примерно один экран телефона.</p></article>
+          <article class="card list-card"><h3>Дополнительно</h3><div class="price-list"><div class="price-row"><span>Интеграция платёжной системы</span><b>1 500 ₽</b></div><div class="price-row"><span>Формы оплаты + настройка писем</span><b>2 000 ₽</b></div></div></article>
+        </div><div class="section-cta"><a class="btn" href="https://t.me/Mommy_2yx" target="_blank" rel="noopener">Заказать Taplink</a></div>
+      </section>
+
+      <section class="section more" id="other">
+        <img class="banner" src="https://img2.teletype.media/files/d9/ec/d9ecea73-b047-4cb0-ae65-6b00dd655278.png" alt="Другие услуги дизайна">
+        <article class="card"><small class="eyebrow" style="color:var(--green-dark)">Также оформляю</small><h2>Другие <em>форматы</em></h2><div class="more-list"><span>Презентации</span><span>Гайды</span><span>Чек-листы</span><span>Баннеры</span><span>Обложки</span></div></article>
+      </section>
+
+      <section class="final"><h2>Давайте создадим визуал, который работает на вас</h2><p>Расскажите о задаче — обсудим подходящий формат и детали проекта.</p><a class="btn" href="https://t.me/Mommy_2yx" target="_blank" rel="noopener">Написать Марго в Telegram →</a></section>
+    </main>
+    <footer>Марго Гладкова · веб-дизайн и обучение</footer>
+  </div>
+</body>
+</html>
