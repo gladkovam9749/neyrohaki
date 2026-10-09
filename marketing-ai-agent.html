@@ -41,9 +41,15 @@ small{font-size:12px}
 .hero p{max-width:620px;color:var(--muted);font-size:17px;margin:22px 0 0}
 .lesson-map{display:flex;gap:7px;overflow:auto;padding:16px 0 8px;scrollbar-width:none}
 .lesson-map a{white-space:nowrap;text-decoration:none;padding:8px 12px;border:1px solid var(--line);background:rgba(255,255,255,.7);border-radius:999px;font-size:12px;font-weight:700}
-.video-slot{position:relative;overflow:hidden;aspect-ratio:16/9;background:var(--ink);border-radius:var(--r);box-shadow:var(--shadow);display:grid;place-items:center;color:#fff;margin:26px 0 18px}
+.video-slot{position:relative;overflow:hidden;background:var(--ink);border-radius:var(--r);box-shadow:var(--shadow);color:#fff;margin:26px 0 18px;padding:24px}
 .video-slot:before{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:var(--lav);opacity:.17;right:-100px;top:-110px}
 .video-slot:after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:var(--green);opacity:.11;left:-100px;bottom:-130px}
+.video-heading{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:18px}
+.video-heading strong{display:block;font-family:Manrope,Inter,sans-serif;font-size:22px;letter-spacing:-.02em}
+.video-heading span{display:block;margin-top:5px;color:rgba(255,255,255,.68);font-size:14px;line-height:1.5}
+.video-duration{flex:0 0 auto;padding:7px 11px;border:1px solid rgba(255,255,255,.24);border-radius:999px;color:#fff!important;font-size:12px!important;font-weight:700;font-variant-numeric:tabular-nums}
+.video-player{position:relative;z-index:1;width:min(100%,480px);margin:0 auto;border-radius:16px;overflow:hidden;background:#090812;box-shadow:0 18px 50px rgba(0,0,0,.32)}
+.video-player video{display:block;width:100%;aspect-ratio:6/13;object-fit:contain;background:#090812}
 .video-inner{position:relative;z-index:1;text-align:center;padding:26px}
 .play{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;margin:0 auto 15px;background:var(--lav);box-shadow:0 12px 30px rgba(0,0,0,.25)}
 .play svg{width:23px;height:23px;fill:#fff;margin-left:3px}
@@ -115,7 +121,7 @@ pre{margin:0;max-height:520px;overflow:auto;padding:18px;background:#191925;colo
 .final p{position:relative;z-index:1;margin:0;max-width:580px}
 footer{padding:22px 0 40px;color:var(--muted);font-size:12px;text-align:center}
 @media(max-width:620px){
- .hero{padding-top:40px}.logo img{width:68px}.lesson-badge span{display:none}.video-slot{aspect-ratio:4/3}.option-pair{grid-template-columns:1fr}
+ .hero{padding-top:40px}.logo img{width:68px}.lesson-badge span{display:none}.video-slot{padding:16px}.video-heading{gap:10px}.video-heading strong{font-size:19px}.video-heading span{font-size:13px}.option-pair{grid-template-columns:1fr}
  .file{grid-template-columns:auto 1fr}.file-link{grid-column:1/-1;text-align:center}.route{align-items:flex-start;flex-direction:column}.route svg{transform:rotate(90deg)}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.chevron{transition:none}}
@@ -146,12 +152,16 @@ footer{padding:22px 0 40px;color:var(--muted);font-size:12px;text-align:center}
     <a href="#video">Видеоурок</a><a href="#step1">Создать агента</a><a href="#step2">Инструкция</a><a href="#step3">Файлы</a><a href="#step4">Запуск</a><a href="#master">MASTER</a>
   </nav>
 
-  <!-- VIDEO SLOT: позже замените содержимое блока на iframe или video -->
   <section id="video" class="video-slot" data-video-slot="marketing-agent-lesson">
-    <div class="video-inner">
-      <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z"/></svg></div>
-      <strong>Здесь появится видеоурок</strong>
-      <span>После записи сюда можно встроить видео без переделки страницы</span>
+    <div class="video-heading">
+      <div><strong>Видеоурок: создаём маркетингового AI‑агента</strong><span>Смотрите пошаговую настройку, а затем повторяйте действия по текстовой инструкции ниже.</span></div>
+      <span class="video-duration">2:08</span>
+    </div>
+    <div class="video-player">
+      <video controls playsinline preload="metadata" poster="marketing-ai-agent-video-cover.png">
+        <source src="marketing-ai-agent-lesson.mp4" type="video/mp4">
+        Ваш браузер не поддерживает встроенное видео. <a href="marketing-ai-agent-lesson.mp4">Откройте видео по ссылке</a>.
+      </video>
     </div>
   </section>
 
@@ -818,15 +828,16 @@ MASTER-документ должен быть:
   </section>
 
   <section id="step4" class="section">
-    <div class="step-title"><div class="step-num">4</div><h2>Загрузите файлы в базу знаний агента</h2></div>
+    <div class="step-title"><div class="step-num">4</div><h2>Завершите первоначальную настройку агента</h2></div>
     <ol class="task-list">
-      <li><strong>Откройте редактирование нужного агента.</strong><p>В чате нажмите на <b>иконку бота в левом верхнем углу</b>. В открывшемся окне найдите своего агента и нажмите <b>значок карандаша</b> напротив его названия.</p></li>
-      <li><strong>Загрузите три файла в знакомом окне настройки.</strong><p>Откроется то же окно, в котором вы проводили первоначальную настройку агента. Пролистайте его вниз до раздела загрузки файлов, выберите три скачанных файла и дождитесь завершения загрузки. Если Syntx не разрешает выбрать их одновременно, добавьте по одному.</p></li>
+      <li><strong>Вернитесь в Syntx.</strong><p>У вас должно быть открыто то же окно первоначальной настройки агента, куда вы только что вставили системную инструкцию.</p></li>
+      <li><strong>Прокрутите окно настроек в самый низ.</strong><p>Найдите раздел загрузки файлов базы знаний.</p></li>
+      <li><strong>Загрузите три скачанных файла.</strong><p>Выберите три файла с телефона. Если Syntx не разрешает добавить их одновременно, загружайте по одному.</p></li>
       <li><strong>Дождитесь окончания загрузки.</strong><p>Не закрывайте страницу, пока каждый файл не появится в списке базы знаний без ошибки.</p></li>
       <li><strong>Сверьте список.</strong><p>В базе должны отображаться ровно три стартовых методических файла:</p></li>
     </ol>
     <ol class="numbered"><li>01_ИССЛЕДОВАНИЯ_И_АНАЛИТИКА.md</li><li>02_СТРАТЕГИЯ_И_МАРКЕТИНГ.md</li><li>03_ПАМЯТЬ_И_MASTER_ДОКУМЕНТЫ.md</li></ol>
-    <p>После проверки нажмите <strong>«Подтвердить»</strong>. Затем можно возвращаться в чат и продолжать пользоваться агентом.</p>
+    <p>После проверки нажмите <strong>«Подтвердить»</strong> или <strong>«Сохранить»</strong> — название кнопки может немного отличаться в зависимости от версии интерфейса.</p>
     <div class="callout green"><p><strong>Готово. Агент создан.</strong> Больше никакие длинные промпты вручную вставлять не нужно.</p></div>
   </section>
 
@@ -857,7 +868,7 @@ MASTER-документ должен быть:
     <ol class="task-list">
       <li><strong>Проверьте результат.</strong><p>Документ должен быть самостоятельным: без фраз «как мы обсуждали выше», без лишней переписки и с понятными заголовками. Например, после исследования ЦА это может быть <b>ЦЕЛЕВАЯ_АУДИТОРИЯ_MASTER.md</b>.</p></li>
       <li><strong>Скачайте готовый .md‑файл.</strong><p>Если агент выдал только текст, попросите: «Дай этот MASTER отдельным файлом .md для скачивания».</p></li>
-      <li><strong>Откройте редактирование этого же агента.</strong><p>В чате нажмите на <b>иконку бота в левом верхнем углу</b>, а затем — на <b>значок карандаша</b> напротив нужного агента. Откроется знакомое окно первоначальной настройки.</p></li>
+      <li><strong>Откройте редактирование этого же агента.</strong><p>После скачивания MASTER‑файла вернитесь в чат Syntx. Нажмите на <b>иконку бота в левом верхнем углу</b>, найдите нужного агента и нажмите <b>значок карандаша</b> напротив его названия. Откроется знакомое окно первоначальной настройки.</p></li>
       <li><strong>Добавьте MASTER и подтвердите изменения.</strong><p>Пролистайте окно вниз до раздела загрузки файлов, выберите скачанный MASTER, дождитесь окончания загрузки и нажмите <b>«Подтвердить»</b>. После этого возвращайтесь в чат и продолжайте пользоваться агентом — новые знания будут доступны и в следующих диалогах.</p></li>
     </ol>
     <div class="master-rule"><h3>Где хранить MASTER?</h3><p>Основное место хранения — база знаний созданного агента в Syntx. Дополнительно сохраняйте копию файла у себя на телефоне или в отдельной папке проекта, чтобы при необходимости восстановить базу.</p></div>
